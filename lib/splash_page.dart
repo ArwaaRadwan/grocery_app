@@ -9,12 +9,16 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
-    @override
+   bool showLoader = false;
+  @override
   void initState() {
     super.initState();
+        Future.delayed(const Duration(seconds: 1), () {
+      setState(() {
+        showLoader = true;
+      });
+    });
 
-    // بعد 3 ثواني هينتقل لصفحة الـ Onboarding
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
@@ -22,34 +26,57 @@ class _SplashPageState extends State<SplashPage> {
       );
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 89, 177, 102),
-      body: Padding(
-        padding: const EdgeInsets.all(100),
-        child: Center(
-          child: Column(
-            children: [
-              Image.asset(
-                "assets/images/logo.png",
-                width: 300,
-                height: 300,
-              ),
-              Text(
-                "GrocerEase",
-                style: TextStyle(
-                  color: const Color.fromARGB(255, 0, 0, 0),
-                  fontSize: 72,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Lilita One",
-                ),
-              ),
-              Text("Your Daily Grocery Companion" , style: TextStyle(fontWeight: FontWeight.bold),)
-              
-            ],
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset("assets/images/splash.jpg", fit: BoxFit.cover),
           ),
-        ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(40),
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Text(
+                        'GrocerEase',
+                        style: TextStyle(
+                          fontSize: 70,
+                          color: const Color.fromARGB(255, 26, 112, 49),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+
+                      Text(
+                        "GrocerEase",
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 75,
+                          //fontWeight: FontWeight.bold,
+                          fontFamily: "Lilita One",
+                        ),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    "Your Daily Grocery Companion",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 20),
+
+            if (showLoader)
+                const CircularProgressIndicator(
+                  color: Colors.green,
+                  strokeWidth: 4,
+                ),                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
