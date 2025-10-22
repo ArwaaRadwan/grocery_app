@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/Data/onboarding_data.dart';
-import 'package:grocery_app/login_page.dart';
+import 'package:grocery_app/welcome_page.dart';
 import 'package:grocery_app/widgets/circular_next_button.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -73,7 +73,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginPage(),
+                              builder: (context) => WelcomePage(),
                             ),
                           );
                         }
