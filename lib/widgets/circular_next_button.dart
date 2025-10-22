@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CircularNextButton extends StatelessWidget {
   final double progress;
   final VoidCallback onPressed;
+  
   const CircularNextButton({
     super.key,
     required this.progress,

@@ -1,82 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/widgets/buttons.dart';
+import 'package:grocery_app/widgets/login_page_form.dart';
+import 'package:grocery_app/widgets/name_style.dart';
+import 'package:grocery_app/utils/validators.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children:[ 
-             Image.asset(
-      "assets/images/background.jpg",
-      fit: BoxFit.cover,
-      width: double.infinity,
-      height: double.infinity,
-    ),
-    Container(
-      color: Colors.white.withOpacity(0.3), 
-    ),
-    Padding(
-          padding: const EdgeInsets.all(35),
+      backgroundColor: const Color.fromARGB(255, 245, 255, 244),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Welcome to our", style: TextStyle(fontSize: 42 , fontWeight: FontWeight.bold , fontFamily: "Lilita One"),),
-              Stack(children:[ 
-
-                Text("GrocerEase", 
-              style: TextStyle(
-                fontSize: 50 , 
-                fontWeight: FontWeight.bold, 
-                color: Colors.green,  
-                fontFamily: "Lilita One",)
-                ),]
-                ) ,
-
-
-              Padding(
-                padding: EdgeInsets.all(30),
+              const SizedBox(height: 50),
+              Image.asset("assets/images/1.png", width: 300),
+              const Text(
+                "Welcome to our",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              Center(
-                child: Column(
-                  children: [ 
-                    SizedBox(
-                      width:350 ,
-                      child: ElevatedButton(
-                          style:ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.green,
-                                        ),
-                        onPressed: (){
-                      
-                        },
-                      child: Text("Continue with Email or Phone ", 
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold),)),
-                    ),
-                 SizedBox(height: 10,),
-                SizedBox(
-                  width: 300,
-                  child: ElevatedButton(
-                    style:ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      foregroundColor: Colors.white,
-                    ),
-                    onPressed: (){
-                  
-                    },
-                   child: Text("Create an Account", 
-                   style: TextStyle(
-                    fontWeight: FontWeight.bold),)),
-                ),],
-                ),
-              )
-             
+              const NameStyle(fontSize: 30),
+              const SizedBox(height: 20),
 
+              // 📱 Phone field
+              LoginPageForm(
+                controller: phoneController,
+                labelText: 'Phone Number',
+                hintText: 'Enter Your Phone Number',
+                validator: Validators.validatePhone,
+              ),
+
+              // 🔒 Password field
+              LoginPageForm(
+                controller: passwordController,
+                labelText: 'Password',
+                hintText: 'Enter Your Password',
+                validator: Validators.validatePassword,
+              ),
+
+              const SizedBox(height: 20),
+
+              Buttons(
+                nameButton: "Login",
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    print("✅ Form is valid");
+                    print("Phone: ${phoneController.text}");
+                    print("Password: ${passwordController.text}");
+                  } else {
+                    print("❌ Form is not valid");
+                  }
+                },
+                backgroundcolor: Colors.green,
+                textcolor: Colors.white,
+              ),
             ],
           ),
         ),
-]      ),
+      ),
     );
   }
 }

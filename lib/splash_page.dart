@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/onboarding_page.dart';
+import 'package:grocery_app/widgets/name_style.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -9,15 +10,10 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-   bool showLoader = false;
+  bool showLoader = false;
   @override
   void initState() {
     super.initState();
-        Future.delayed(const Duration(seconds: 1), () {
-      setState(() {
-        showLoader = true;
-      });
-    });
 
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
@@ -30,54 +26,63 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset("assets/images/splash.jpg", fit: BoxFit.cover),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(40),
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      Text(
-                        'GrocerEase',
-                        style: TextStyle(
-                          fontSize: 70,
-                          color: const Color.fromARGB(255, 26, 112, 49),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-
-                      Text(
-                        "GrocerEase",
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 75,
-                          //fontWeight: FontWeight.bold,
-                          fontFamily: "Lilita One",
-                        ),
-                      ),
-                    ],
-                  ),
-                  Text(
-                    "Your Daily Grocery Companion",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 20),
-
-            if (showLoader)
-                const CircularProgressIndicator(
-                  color: Colors.green,
-                  strokeWidth: 4,
-                ),                ],
+      backgroundColor: const Color.fromARGB(255, 245, 255, 244),
+      body: 
+        Center(
+          child: Column(
+            children: [
+              SingleChildScrollView(
+                child:
+                  Image.asset("assets/images/1.png")
               ),
-            ),
-          ),
-        ],
-      ),
+             NameStyle(fontSize: 50.0,)
+            ],
+          ))     
+      // body: Stack(
+      //   children: [
+      //     Positioned.fill(
+      //       child: Image.asset("assets/images/logo.png", fit: BoxFit.cover ,
+      //       ),
+      //     ),
+      //     Container(color: Colors.white.withOpacity(0.3),),
+      //     Center(
+      //       child: Padding(
+      //         padding: const EdgeInsets.all(40),
+      //         child: Column(
+      //           children: [
+      //             Stack(
+      //               children: [
+      //                 Text(
+      //                   'GrocerEase',
+      //                   style: TextStyle(
+      //                     fontSize: 70,
+      //                     color: const Color.fromARGB(255, 26, 112, 49),
+      //                     fontWeight: FontWeight.bold,
+      //                   ),
+      //                 ),
+
+      //                 Text(
+      //                   "GrocerEase",
+      //                   style: TextStyle(
+      //                     color: Colors.green,
+      //                     fontSize: 75,
+      //                     //fontWeight: FontWeight.bold,
+      //                     fontFamily: "Lilita One",
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //             Text(
+      //               "Your Daily Grocery Companion",
+      //               style: TextStyle(fontWeight: FontWeight.bold),
+      //             ),
+
+      //                          ],
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
