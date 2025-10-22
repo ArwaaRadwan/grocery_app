@@ -3,6 +3,7 @@ import 'package:grocery_app/widgets/buttons.dart';
 import 'package:grocery_app/widgets/login_page_form.dart';
 import 'package:grocery_app/widgets/name_style.dart';
 import 'package:grocery_app/utils/validators.dart';
+import 'package:grocery_app/widgets/social_buttons.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -52,7 +53,16 @@ class _LoginPageState extends State<LoginPage> {
                 validator: Validators.validatePassword,
               ),
 
-              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Forget Password?",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
 
               Buttons(
                 nameButton: "Login",
@@ -67,6 +77,50 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 backgroundcolor: Colors.green,
                 textcolor: Colors.white,
+              ),
+              SizedBox(height: 20),
+
+              Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SocialButton(
+          image:"assets/images/g++.png" ,
+          text: 'Google',
+          borderColor: Colors.red,
+          textColor: Colors.red,
+          iconColor: Colors.red,
+          onTap: () {
+            //print('Google pressed');
+          },
+        ),
+        SocialButton(
+          image: "assets/images/apple_icon.png",
+          text: 'Apple',
+          borderColor: Colors.black,
+          textColor: Colors.black,
+          iconColor: Colors.black,
+          onTap: () {
+            //print('Apple pressed');
+          },
+        ),
+      ],
+    ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't Have Account?"),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
