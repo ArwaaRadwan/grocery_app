@@ -3,6 +3,7 @@ import 'package:grocery_app/Data/onboarding_data.dart';
 import 'package:grocery_app/welcome_page.dart';
 import 'package:grocery_app/widgets/circular_next_button.dart';
 
+
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 

@@ -30,6 +30,7 @@ class _SplashPageState extends State<SplashPage> {
       body: 
         Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SingleChildScrollView(
                 child:
